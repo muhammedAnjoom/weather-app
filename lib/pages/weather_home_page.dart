@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/color/colors.dart';
 import 'package:weather_app/core/icon/icons.dart';
 import 'package:weather_app/models/weather_api.dart';
 import 'package:weather_app/pages/loading/loading_page.dart';
+import 'package:weather_app/pages/widgets/header.dart';
 import 'package:weather_app/services/weather_services.dart';
 
 class MainPage extends StatefulWidget {
@@ -124,5 +126,17 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) =>
-      _isLoading ? const LoadingPage() : const Scaffold();
+      _isLoading ? const LoadingPage() :  Scaffold(
+        appBar: PreferredSize(
+          preferredSize:const Size.fromHeight(100),
+          child: Header(
+            backgroundColor: defaultColor,
+            cityName: weather.city,
+            decription: weather.text,
+            decriptionIMG: loadingIcon,
+            stateName: weather.state,
+            temp: weather.temp,
+          ),
+        ),
+      );
 }
