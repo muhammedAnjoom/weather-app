@@ -128,7 +128,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) =>
       _isLoading ? const LoadingPage() :  Scaffold(
         appBar: PreferredSize(
-          preferredSize:const Size.fromHeight(100),
+          preferredSize:const Size.fromHeight(400),
           child: Header(
             backgroundColor: defaultColor,
             cityName: weather.city,

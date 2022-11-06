@@ -53,7 +53,7 @@ class _HeaderState extends State<Header> {
                     rainyIcon,
                     height: 50,
                   )
-                : Container(
+                : SizedBox(
                     width: 700,
                     height: 50,
                     child: TextField(
@@ -106,10 +106,55 @@ class _HeaderState extends State<Header> {
               height: 25,
             ),
             notFound
-                ? Text("not found")
+                ? const Text("not found")
                 : Row(
-                    children: [],
-                  )
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            width: 150,
+                            child: Text(
+                              "${widget.temp.toString()}°",
+                              style: const TextStyle(
+                                  fontSize: 60, fontWeight: FontWeight.w200),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            widget.cityName,
+                            style: const TextStyle(fontSize: 25),
+                          ),
+                          const SizedBox(
+                            height: 5,
+                          ),
+                          Text(
+                            widget.stateName,
+                            style: const TextStyle(
+                              fontWeight: FontWeight.w300,
+                              fontSize: 18,
+                            ),
+                          )
+                        ],
+                      ),
+                      const Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 15),
+                        child: SizedBox(
+                          width: 120,
+                          child: Column(
+                            children: [
+                              Lottie.network(widget.decriptionIMG.toString(),
+                                  fit: BoxFit.cover),
+                              Text(widget.decription,textAlign: TextAlign.center,)
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
           ],
         ),
       ),
