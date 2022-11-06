@@ -117,7 +117,7 @@ class _MainPageState extends State<MainPage> {
     var turnInt = int.parse(hours[0]);
     setState(() {
       hour = turnInt;
-      time=time12;
+      time = time12;
     });
   }
 
@@ -158,62 +158,81 @@ class _MainPageState extends State<MainPage> {
               temp: weather.temp,
             ),
           ),
-          body: Container(
-            decoration: BoxDecoration(
-                gradient: isday
-                    ? LinearGradient(
-                        begin: const Alignment(-1.5, 8),
-                        end: const Alignment(-1.5, -0.5),
-                        colors: [Colors.white, defaultColor],
-                      )
-                    : LinearGradient(
-                        begin: const Alignment(-1.5, 8),
-                        end: const Alignment(-1.5, -0.5),
-                        colors: [Colors.white, defaultColor],
-                      )),
-            child: CustomScrollView(
-              physics: const BouncingScrollPhysics(),
-              slivers: [
-                SliverToBoxAdapter(
-                  child: Container(
-                    height: 200,
-                    width: MediaQuery.of(context).size.width,
-                    color: const Color.fromARGB(0, 255, 255, 255),
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      physics: const BouncingScrollPhysics(),
-                      itemCount: weather.forcast.length - hour - 1,
-                      itemBuilder: (context, index) => SingleChildScrollView(
-                        padding:
-                            const EdgeInsets.symmetric(horizontal: 7, vertical: 5),
-                        child: Center(
-                            child: ForecastCard(
-                          avergeTemp:
-                              weather.forcast[hour + index]['temp_c'] ?? "",
-                          hour: weather.forcast[hour + index]['time']
-                              .toString()
-                              .split(" ")[1],
-                          descriptionIMG: weather.forcast[hour + index]
-                                  ['condition']['icon']
-                              .toString()
-                              .replaceAll('//', 'http://'),
-                          descriptions: weather.forcast[hour + index]
-                                  ['condition']['text'] ??
-                              "",
-                        )),
+          body: Stack(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    gradient: isday
+                        ? LinearGradient(
+                            begin: const Alignment(-1.5, 8),
+                            end: const Alignment(-1.5, -0.5),
+                            colors: [Colors.white, defaultColor],
+                          )
+                        : LinearGradient(
+                            begin: const Alignment(-1.5, 8),
+                            end: const Alignment(-1.5, -0.5),
+                            colors: [Colors.white, defaultColor],
+                          )),
+                child: CustomScrollView(
+                  physics: const BouncingScrollPhysics(),
+                  slivers: [
+                    SliverToBoxAdapter(
+                      child: Container(
+                        height: 200,
+                        width: MediaQuery.of(context).size.width,
+                        color: const Color.fromARGB(0, 255, 255, 255),
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: weather.forcast.length - hour - 1,
+                          itemBuilder: (context, index) =>
+                              SingleChildScrollView(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 7, vertical: 5),
+                            child: Center(
+                                child: ForecastCard(
+                              avergeTemp:
+                                  weather.forcast[hour + index]['temp_c'] ?? "",
+                              hour: weather.forcast[hour + index]['time']
+                                  .toString()
+                                  .split(" ")[1],
+                              descriptionIMG: weather.forcast[hour + index]
+                                      ['condition']['icon']
+                                  .toString()
+                                  .replaceAll('//', 'http://'),
+                              descriptions: weather.forcast[hour + index]
+                                      ['condition']['text'] ??
+                                  "",
+                            )),
+                          ),
+                        ),
                       ),
+                    ),
+                    SliverToBoxAdapter(
+                      child: InformationCard(
+                        humidity: weather.humditiy,
+                        unIndex: weather.uvIndex,
+                        wind: weather.wind,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              const Align(
+                alignment: Alignment.bottomCenter,
+                child: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    "©ANCODER",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 10,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),
-                SliverToBoxAdapter(
-                  child: InformationCard(
-                    humidity: weather.humditiy,
-                    unIndex: weather.uvIndex,
-                    wind: weather.wind,
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           ),
         );
 }
