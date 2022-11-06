@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:weather_app/models/weather_api.dart';
 
@@ -12,7 +11,7 @@ class WeatherService{
     if(response.statusCode == 200){
       return Weather.fromJson(jsonDecode(response.body));
     }else{
-      throw Exception("Failed");
+      throw Exception("Falid");
     }
   }
 }

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:weather_app/core/icon/icons.dart';
 import 'package:weather_app/services/weather_services.dart';
@@ -13,12 +15,16 @@ class Header extends StatefulWidget {
     required this.stateName,
     required this.backgroundColor,
     required this.temp,
+    required this.date,
+    required this.time
   }) : super(key: key);
   String cityName;
   String stateName;
   double temp;
   String decriptionIMG;
   String decription;
+  String time;
+  String date;
   Color backgroundColor;
   @override
   _HeaderState createState() => _HeaderState();
@@ -33,6 +39,7 @@ class _HeaderState extends State<Header> {
 
   loadingFunction() async {
     await weatherService.getWeatherData();
+    print(widget.cityName);
     setState(() {
       _isLoading = false;
     });
@@ -45,7 +52,7 @@ class _HeaderState extends State<Header> {
       toolbarHeight: MediaQuery.of(context).size.height / 3,
       backgroundColor: widget.backgroundColor,
       title: Padding(
-        padding: const EdgeInsets.only(top: 25),
+        padding: const EdgeInsets.only(top: 10),
         child: Column(
           children: [
             _isLoading
@@ -61,6 +68,7 @@ class _HeaderState extends State<Header> {
                       onSubmitted: (value) {
                         setState(() {
                           _isLoading = true;
+                          city = value;
                           Future.delayed(const Duration(seconds: 1), () {
                             loadingFunction();
                             textFiledController.clear();
@@ -133,8 +141,25 @@ class _HeaderState extends State<Header> {
                           Text(
                             widget.stateName,
                             style: const TextStyle(
+                              letterSpacing: -1,
                               fontWeight: FontWeight.w300,
                               fontSize: 18,
+                            ),
+                          ),
+                          const SizedBox(height: 5,),
+                          Text(
+                            widget.date.split("-").reversed.join("-"),
+                            style:const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w400
+                            ),
+                          ),
+                          const SizedBox(height: 5,),
+                          Text(
+                            widget.time,
+                            style:const TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w300
                             ),
                           )
                         ],

@@ -113,7 +113,7 @@ class InformationCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Image.network(
-                      "",
+                      "https://static.thenounproject.com/png/7745-200.png",
                       width: 40,
                       height: 40,
                       fit: BoxFit.cover,

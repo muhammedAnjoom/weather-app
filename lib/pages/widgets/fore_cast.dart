@@ -18,12 +18,13 @@ class ForecastCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 120,
-      height: 120,
+      height: 170,
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
           color: const Color.fromARGB(18, 255, 255, 255)),
       child: Column(
         children: [
+          const SizedBox(height: 8,),
           Text(
             hour,
             style: const TextStyle(
