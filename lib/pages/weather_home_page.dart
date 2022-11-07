@@ -108,12 +108,13 @@ class _MainPageState extends State<MainPage> {
     List datetime = weather.date.split(' ');
     // print(datetime[0]);
     var hours = datetime[1].split(':');
-    final dateFormat = DateFormat('h:mm a');
-    var time12 = dateFormat.format(
-      DateTime.parse(
-        weather.date.toString(),
-      ),
-    );
+    final time12 =
+        DateFormat.jm().format(DateFormat("hh:mm").parse(datetime[1]));
+    // var time12 = dateFormat.format(
+    //   DateTime.parse(
+    //     weather.date.toString(),
+    //   ),
+    // );
     var turnInt = int.parse(hours[0]);
     setState(() {
       hour = turnInt;
