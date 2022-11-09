@@ -115,6 +115,7 @@ class _MainPageState extends State<MainPage> {
     //     weather.date.toString(),
     //   ),
     // );
+    print(time12);
     var turnInt = int.parse(hours[0]);
     setState(() {
       hour = turnInt;
