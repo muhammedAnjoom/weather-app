@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'dart:math';
+
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -35,9 +35,11 @@ class _MainPageState extends State<MainPage> {
   Future getWeather() async {
     weather = await weatherService.getWeatherData();
 
-    setState(() {
-      getWeather();
-      _isLoading = false;
+    Timer.periodic(const Duration(seconds: 2), (timer) {
+      setState(() {
+        getWeather();
+        _isLoading = false;
+      });
     });
   }
 

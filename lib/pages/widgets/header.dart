@@ -1,23 +1,26 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:substring_highlight/substring_highlight.dart';
 import 'package:weather_app/core/icon/icons.dart';
 import 'package:weather_app/services/weather_services.dart';
 import 'package:lottie/lottie.dart';
 
+import '../../models/state_serives.dart';
+
 // ignore: must_be_immutable
 class Header extends StatefulWidget {
-  Header({
-    Key? key,
-    required this.cityName,
-    required this.decription,
-    required this.decriptionIMG,
-    required this.stateName,
-    required this.backgroundColor,
-    required this.temp,
-    required this.date,
-    required this.time
-  }) : super(key: key);
+  Header(
+      {Key? key,
+      required this.cityName,
+      required this.decription,
+      required this.decriptionIMG,
+      required this.stateName,
+      required this.backgroundColor,
+      required this.temp,
+      required this.date,
+      required this.time})
+      : super(key: key);
   String cityName;
   String stateName;
   double temp;
@@ -146,21 +149,21 @@ class _HeaderState extends State<Header> {
                               fontSize: 18,
                             ),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Text(
                             widget.date.split("-").reversed.join("-"),
-                            style:const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w400
-                            ),
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w400),
                           ),
-                          const SizedBox(height: 5,),
+                          const SizedBox(
+                            height: 5,
+                          ),
                           Text(
                             widget.time,
-                            style:const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.w300
-                            ),
+                            style: const TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.w300),
                           )
                         ],
                       ),
@@ -173,7 +176,10 @@ class _HeaderState extends State<Header> {
                             children: [
                               Lottie.network(widget.decriptionIMG.toString(),
                                   fit: BoxFit.cover),
-                              Text(widget.decription,textAlign: TextAlign.center,)
+                              Text(
+                                widget.decription,
+                                textAlign: TextAlign.center,
+                              )
                             ],
                           ),
                         ),

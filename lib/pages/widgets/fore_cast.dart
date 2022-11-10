@@ -33,13 +33,15 @@ class ForecastCard extends StatelessWidget {
           const SizedBox(
             height: 10,
           ),
-          Container(
-            height: 70,
-            width: 70,
-            color: const Color.fromARGB(0, 0, 0, 0),
-            child: Image.network(
-              descriptionIMG,
-              fit: BoxFit.cover,
+          Expanded(
+            child: Container(
+              height: 70,
+              width: 70,
+              color: const Color.fromARGB(0, 0, 0, 0),
+              child: Image.network(
+                descriptionIMG,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           const SizedBox(

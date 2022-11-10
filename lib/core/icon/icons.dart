@@ -12,3 +12,5 @@ String rainyIcon =
     'https://assets7.lottiefiles.com/private_files/lf30_orqfuyox.json';
 String overcastDayIcon =
     'https://assets4.lottiefiles.com/packages/lf20_trr3kzyu.json';
+  String mistNigtIcon =
+  'https://assets4.lottiefiles.com/temp/lf20_kOfPKE.json';
