@@ -32,10 +32,15 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.10.0
   http: ^0.13.5
   intl: ^0.17.0
   lottie: ^1.4.3
   substring_highlight: ^1.0.33
+
+flutter_icons:
+  android: "launcher_icon"
+  image_path: "assets/logo/logo.png"
 
 dev_dependencies:
   flutter_lints: ^2.0.0
