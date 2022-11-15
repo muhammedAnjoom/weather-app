@@ -34,13 +34,11 @@ class _MainPageState extends State<MainPage> {
 
   Future getWeather() async {
     weather = await weatherService.getWeatherData();
-
-    Timer.periodic(const Duration(seconds: 2), (timer) {
       setState(() {
         getWeather();
         _isLoading = false;
       });
-    });
+
   }
 
   void setday() async {
